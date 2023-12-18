@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="icon.png" type="image/x-icon">
   <meta name="theme-color" content="#2C485E">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
      
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
     <title>Page title</title>
@@ -45,27 +46,47 @@
          <source src="wallpaper.mp4" type="">
      </video>
     </main>
-        
-   <div id="button">
-         <button id="left">
-<i class="fa fa-arrow-left" style="color:white;"></i></button>
-
-     <button id="right">
-<i class="fa fa-arrow-right" style="color:white;"></i></button
-    </div>
-      </div>
-      
- <div class="cards">
-      <div class="carded">
-<div class="card"><a href="#" class="link">الخطة الدراسية</a></div>
-<div class="card"><a href="#" class="link">المقررات</a></div>
+    
+        <div class="slider">
+  <button id="prevButton"><span id="ton">السابق</span></button>
+  <div class="card-container">
+ <div class="card"><a href="#" class="link">المقررات</a></div>
 <div class="card"><a href="#" class="link">التكاليف</a></div> 
 <div class="card"><a href="#" class="link">المحاضرات</a></div>
 <div class="card"><a href="#" class="link">الفصل الدراسي</a></div>
 <div class="card"><a href="#" class="link">نتائج الطلاب</a></div>
 <div class="card"><a href="#" class="link">مشاريع التخرج</a></div>
-        </div>
-    </div>
+  </div>
+  <button id="nextButton"><span id="ton">التالي</span></button>
+</div>
+ 
+ <script>
+    const prevButton = document.getElementById('prevButton');
+const nextButton = document.getElementById('nextButton');
+const cardContainer = document.querySelector('.card-container');
+
+const cards = document.querySelectorAll('.card');
+const totalCards = cards.length;
+let currentIndex = 0;
+
+prevButton.addEventListener('click', function() {
+  currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+  updateSlider();
+});
+
+nextButton.addEventListener('click', function() {
+  currentIndex = (currentIndex + 1) % totalCards;
+  updateSlider();
+});
+
+function updateSlider() {
+  const cardWidth = cards[0].clientWidth;
+  cardContainer.style.transform = `translateX(${-currentIndex * cardWidth}px)`;
+}
+
+// Initial slider position
+updateSlider();
+</script>
   
      <div class="login-container">
     <h3>بيانات الطالب</h3>
